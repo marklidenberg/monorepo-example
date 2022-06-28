@@ -19,15 +19,19 @@
       "tagName": "release-${version}",
       "push": true,
       "requireCleanWorkingDir": false
-    }
-  },
-  "plugins": {
-    "@release-it/bumper": {
-      "out": {
-        "file": "pyproject.toml",
-        "path": "tool.poetry.version"
+    },
+    "plugins": {
+      "@release-it/bumper": {
+        "in": {
+          "file": "pyproject.toml",
+          "path": "tool.poetry.version"
+        },
+        "out": {
+          "file": "pyproject.toml",
+          "path": "tool.poetry.version"
+        }
       }
     }
   },
-  "version": "0.0.4"
+  "version": "0.1.3"
 }
