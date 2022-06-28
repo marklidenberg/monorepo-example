@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "@release-it/bumper": "^4.0.0",
+    "release-it": "^15.1.1"
+  },
+  "scripts": {
+    "release": "release-it --ci"
+  },
+  "release-it": {
+    "github": {
+      "release": false
+    },
+    "npm": {
+      "publish": false
+    },
+    "git": {
+      "commitMessage": "chore(release): ${version}",
+      "tag": true,
+      "tagName": "release-${version}",
+      "push": true,
+      "requireCleanWorkingDir": false
+    }
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "in": "pyproject.toml",
+      "out": "pyproject.toml"
+    }
+  },
+  "version": "0.0.3"
+}
