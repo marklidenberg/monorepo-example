@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@release-it/bumper": "^4.0.0",
+    "@release-it/conventional-changelog": "^5.0.0",
     "release-it": "^15.1.1"
   },
   "scripts": {
@@ -30,8 +31,12 @@
           "file": "pyproject.toml",
           "path": "tool.poetry.version"
         }
+      },
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits",
+        "infile": "CHANGELOG.md"
       }
     }
   },
-  "version": "0.1.4"
+  "version": "0.1.5"
 }

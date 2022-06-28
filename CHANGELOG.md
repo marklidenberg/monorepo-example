@@ -1,3 +1,7 @@
+
+
+### [0.1.5](https://github.com/marklidenberg/lessmore/compare/release-0.1.4...release-0.1.5) (2022-06-28)
+
 # Changelog
 
 <!--next-version-placeholder-->
