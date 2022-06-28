@@ -21,3 +21,4 @@ line_length = 120
 [tool.semantic_release]
 version_toml = "pyproject.toml:tool.poetry.version"
 build_command = false
+branch = "master"
