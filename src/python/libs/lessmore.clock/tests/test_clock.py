@@ -2,7 +2,7 @@ import time
 
 from lessmore.clock import *
 
-# some comment 2
+# some comment 3
 
 
 @clockify("time")
