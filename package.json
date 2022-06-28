@@ -2,6 +2,7 @@
   "devDependencies": {
     "@release-it/bumper": "^4.0.0",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@release-it/keep-a-changelog": "^3.0.0",
     "release-it": "^15.1.1"
   },
   "scripts": {
@@ -35,8 +36,11 @@
       "@release-it/conventional-changelog": {
         "preset": "conventionalcommits",
         "infile": "CHANGELOG.md"
+      },
+      "@release-it/keep-a-changelog": {
+        "filename": "CHANGELOG.md"
       }
     }
   },
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
