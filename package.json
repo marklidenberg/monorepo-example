@@ -32,12 +32,13 @@
           "file": "pyproject.toml",
           "path": "tool.poetry.version"
         }
-      },
-      "@release-it/conventional-changelog": {
-        "preset": "conventionalcommits",
-        "infile": "CHANGELOG.md"
       }
+    },
+    "hooks": {
+      "after:bump": [
+        "conventional-changelog -i CHANGELOG.md -s --config .conventional-changelog/config.js"
+      ]
     }
   },
-  "version": "0.2.3"
+  "version": "0.2.5"
 }

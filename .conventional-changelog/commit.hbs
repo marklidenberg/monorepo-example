@@ -1,0 +1,15 @@
+*{{#if scope}} **{{scope}}:**
+{{~/if}} {{#if subject}}
+  {{~subject}}
+{{~else}}
+  {{~header}}
+{{~/if}}
+
+{{~!-- commit link --}}
+{{~#if hash}} ([{{shortHash hash}}]({{root.repoUrl}}/commit/{{hash}})){{~/if}}
+
+{{~#if indentedBody}}
+
+
+{{indentedBody}}
+{{~/if}}
