@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lessmore"
-version = "0.1.1"
+version = "0.1.2"
 description = "Mark Lidenberg's Monorepo"
 authors = ["marklidenberg <marklidenberg@gmail.com>"]
 license = "MIT"
