@@ -23,9 +23,11 @@
   },
   "plugins": {
     "@release-it/bumper": {
-      "in": "pyproject.toml",
-      "out": "pyproject.toml"
+      "out": {
+        "file": "pyproject.toml",
+        "path": "tool.poetry.version"
+      }
     }
   },
-  "version": "0.0.3"
+  "version": "0.0.4"
 }
