@@ -1,5 +1,5 @@
 [[package]]
-name = "lessmore.code-block"
+name = "lessmore_test.code-block"
 version = "0.1.0"
 description = ""
 category = "dev"
@@ -9,7 +9,7 @@ develop = true
 
 [package.source]
 type = "directory"
-url = "../lessmore.code_block"
+url = "../lessmore_test.code_block"
 
 [[package]]
 name = "numpy"
@@ -73,7 +73,7 @@ python-versions = "^3.9"
 content-hash = "9cea5b79cd8215ad38d37c236f1976d8039dc481f70b083d535b28af874c0b87"
 
 [metadata.files]
-"lessmore.code-block" = []
+"lessmore_test.code-block" = []
 numpy = [
     {file = "numpy-1.23.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:58bfd40eb478f54ff7a5710dd61c8097e169bc36cc68333d00a9bcd8def53b38"},
     {file = "numpy-1.23.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:196cd074c3f97c4121601790955f915187736f9cf458d3ee1f1b46aff2b1ade0"},

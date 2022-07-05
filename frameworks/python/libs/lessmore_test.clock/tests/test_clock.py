@@ -1,6 +1,6 @@
 import time
 
-from lessmore.clock import *
+from lessmore_test.clock import *
 
 # some comment 2
 

@@ -2,7 +2,7 @@ import json
 import time
 
 import pandas as pd
-from lessmore.code_block import code
+from lessmore_test.code_block import code
 
 
 class Clock:

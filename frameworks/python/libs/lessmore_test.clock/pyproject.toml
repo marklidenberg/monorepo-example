@@ -1,18 +1,18 @@
 [tool.poetry]
-name = "lessmore.clock"
+name = "lessmore_test.clock"
 version = "0.1.0"
 description = ""
 authors = ["marklidenberg <marklidenberg@gmail.com>"]
 packages = [
-    { include = "lessmore" },
+    { include = "lessmore_test" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.4.3"
+"lessmore_test.code_block" = {path = "../lessmore_test.code_block", develop = true}
 
 [tool.poetry.dev-dependencies]
-"lessmore.code_block" = {path = "../lessmore.code_block", develop = true}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

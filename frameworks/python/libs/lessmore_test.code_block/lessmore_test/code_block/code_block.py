@@ -10,5 +10,6 @@ class CodeBlock:
         pass
 
 
+# todo maybe: add some extra logic here like logging/try-except...
 def code(*args, **kwargs):
     return CodeBlock(*args, **kwargs)
