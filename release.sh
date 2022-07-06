@@ -29,7 +29,7 @@ auto-changelog --latest-version "$VERSION" --tag-pattern "release"
 
 # - пушим изменения с новым релизом
 git checkout master
-git commit -a -m "chore(release): pyflink-parser $VERSION"
-git tag -a "pyflink-parser-release-$VERSION" -m "chore(release): pyflink-parser $VERSION" HEAD
+git commit -a -m "chore(release): $VERSION"
+git tag -a "release-$VERSION" -m "chore(release): $VERSION" HEAD
 git push
-git push origin "pyflink-parser-release-$VERSION"
+git push origin "release-$VERSION"
