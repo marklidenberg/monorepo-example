@@ -21,6 +21,5 @@ jobs:
     needs:
       - lint
     runs-on: ubuntu-latest
-
     steps:
       - run: echo "Done"
