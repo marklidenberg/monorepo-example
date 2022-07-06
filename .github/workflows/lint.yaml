@@ -1,0 +1,28 @@
+# Базовый ci
+
+name: ci
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'release-*'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable
+        with:
+          options: "-l 120"
+          src: "./src"
+  success:
+    needs:
+      - lint
+    runs-on:
+      - self-hosted
+      - Linux
+
+    steps:
+      - run: echo "Done"
