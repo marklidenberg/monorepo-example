@@ -1,6 +1,17 @@
 FROM python:3.9
+
+# copy source
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-CMD ["hello_world/app.py"]
+
+# install poetry
+ENV POETRY_HOME=/poetry
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+ENV PATH="/poetry/bin:${PATH}"
+
+# install dependencies
+RUN poetry install
+
+# run app
+ENTRYPOINT ["poetry"]
+CMD ["run python hello_world/app.py"]

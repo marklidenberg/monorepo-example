@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  hello-world:
+    build: .
+    command: poetry run python -u /hello_world/app.py
+      - 5050:5050
+  hello-world-tests:
+    build: .
+    command: poetry run python -u /tests/test_app.py
+    depends_on:
+      - hello-world

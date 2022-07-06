@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  hello-world:
+    build: .
+    command: python -u /hello_world/app.py
+      - 5050:5050
