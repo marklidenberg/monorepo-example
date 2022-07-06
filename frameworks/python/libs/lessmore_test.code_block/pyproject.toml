@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["marklidenberg <marklidenberg@gmail.com>"]
 packages = [
-    { include = "lessmore" },
+    { include = "lessmore_test" },
 ]
 
 [tool.poetry.dependencies]
