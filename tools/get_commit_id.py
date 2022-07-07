@@ -84,7 +84,7 @@ def get_path():
     master_branch = get_master_branch_name()
     if get_branch_name() == master_branch:
 
-        inner_desc = _execute_command('git describe --tags --match "release*" --candidates 100 --always')
+        inner_desc = _execute_command("git describe --tags --match release* --candidates 100 --always")
         if "release" not in inner_desc:
             # no release found
 
@@ -139,6 +139,7 @@ if __name__ == "__main__":
         # default
         suffix = "local"
     elif args.no_suffix:
+        assert not args.suffix, "--no-suffix and --suffix are incompatible"
         suffix = None
     else:
         suffix = args.suffix
