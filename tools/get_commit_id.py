@@ -1,7 +1,5 @@
 import re
-import os
 import subprocess
-import sys
 
 # - Utils
 
@@ -81,6 +79,10 @@ def get_master_branch_name():
 
 
 def get_path():
+    """
+    Returns <release> or <release>-<n_commits_after_release>-<short_sha> or <branch_name>-<n_commits_after_branching_from_master>-<short_sha>
+    -------
+    """
     master_branch = get_master_branch_name()
     if get_branch_name() == master_branch:
 
