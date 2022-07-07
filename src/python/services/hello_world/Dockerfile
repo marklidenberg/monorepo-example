@@ -4,11 +4,16 @@ FROM python:3.9
 ENV POETRY_HOME=/poetry
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ENV PATH="/poetry/bin:${PATH}"
+# setup global python as default
+RUN poetry config virtualenvs.create false
+
+# - install basic dependencies. NOTE: requirements.txt fild is created manually. See update_requirements.sh script
+COPY src/python/services/hello_world/requirements.txt .
+RUN pip install -r requirements.txt
 
 ## - copy source
 COPY ../../../. /lessmore
 WORKDIR /lessmore/src/python/services/hello_world
 
-## - install all dependencies
-# todo next: optimize install
+## - install all left dependencies (editable installs, ...)
 RUN poetry install

@@ -14,6 +14,6 @@ services:
     build:
       context: ../../../.. # repo root
       dockerfile: ./src/python/services/hello_world/Dockerfile
-    command: poetry run python -u /tests/test_app.py
+    command: poetry run pytest tests
     depends_on:
-      - hello-world
+      - server
