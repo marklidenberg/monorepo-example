@@ -1,29 +1,13 @@
 #!/usr/bin/env bash
-# - сборка нового релиза
-if [ -z $* ]
-  then
-  echo "No options found!"
-  exit 1
-fi
 
-if [ "$1" != "major" ] && [ "$1" != "minor" ] && [ "$1" != "patch" ];
-  then
-  echo "you must specify: major, minor or patch"
-  exit 1
-fi
-
-# - меняем релиз в чарте
-poetry_output=$(poetry version $1) # 'Bumping version from 0.2.22 to 0.2.23'
+# - получаем версию
+pyproject_contents=$(cat pyproject.toml)
 
 # парсим версию
-regex_pattern='from ([0-9\.]+) to ([0-9\.]+)'
+regex_pattern='version = "([0-9\.]+)"'
 # применяем regex, результат сохранится в BASE_REMATCH
-[[ "$poetry_output" =~ $regex_pattern ]]
-VERSION_FROM=${BASH_REMATCH[1]} # 0.2.22
-VERSION_TO=${BASH_REMATCH[2]} # 0.2.23
-VERSION=$VERSION_TO
-
-echo "Bumping $1 version from $VERSION_FROM to $VERSION_TO"
+[[ $pyproject_contents =~ $regex_pattern ]]
+VERSION=${BASH_REMATCH[1]} # 0.2.22
 
 # - генерим ченджлог
 auto-changelog --latest-version "$VERSION" --tag-pattern "release"
