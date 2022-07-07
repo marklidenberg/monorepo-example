@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "lessmore_test.imports"
+version = "0.1.0"
+description = ""
+authors = ["marklidenberg <marklidenberg@gmail.com>"]
+packages = [
+    { include = "lessmore_test" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.3"
+"lessmore_test.code_block" = {path = "../lessmore_test.code_block", develop = true}
+"lessmore_test.clock" = {path = "../lessmore_test.clock", develop = true}
+icecream = "^2.1.2"
+loguru = "^0.6.0"
+anyconfig = "^0.13.0"
+pyperclip = "^1.8.2"
+pendulum = "^2.1.2"
+httpx = "^0.23.0"
+pydantic = "^1.9.1"
+protobuf = "^4.21.2"
+better-exceptions = "^0.3.3"
+python-dotenv = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
