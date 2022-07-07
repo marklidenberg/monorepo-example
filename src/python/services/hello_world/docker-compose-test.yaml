@@ -1,12 +1,19 @@
 version: '3.3'
 
 services:
-  hello-world:
-    build: .
-    command: poetry run python -u /hello_world/app.py
+  server:
+    image: ${IMAGE_TAG:-localhost/hello-world:latest}
+    build:
+      context: ../../../.. # repo root
+      dockerfile: ./src/python/services/hello_world/Dockerfile
+    command: poetry run python hello_world/app.py
+    ports:
       - 5050:5050
   hello-world-tests:
-    build: .
+    image: ${IMAGE_TAG:-localhost/hello-world:latest}
+    build:
+      context: ../../../.. # repo root
+      dockerfile: ./src/python/services/hello_world/Dockerfile
     command: poetry run python -u /tests/test_app.py
     depends_on:
       - hello-world

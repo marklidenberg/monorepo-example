@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
   server:
+    image: ${IMAGE_TAG:-localhost/hello-world:latest}
     build:
       context: ../../../.. # repo root
       dockerfile: ./src/python/services/hello_world/Dockerfile

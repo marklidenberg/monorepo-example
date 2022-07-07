@@ -132,18 +132,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--suffix")
-    parser.add_argument("--no-suffix", action="store_true")
-    parser.set_defaults(no_suffix=False)
 
     args = parser.parse_args()
-
-    if not args.no_suffix and not args.suffix:
-        # default
-        suffix = "local"
-    elif args.no_suffix:
-        assert not args.suffix, "--no-suffix and --suffix are incompatible"
-        suffix = None
-    else:
-        suffix = args.suffix
-
-    print(get_commit_id(suffix=suffix))
+    print(get_commit_id(suffix=args.suffix))
