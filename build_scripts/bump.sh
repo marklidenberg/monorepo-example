@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+cd ..
+
 # - сборка нового релиза
 if [ -z $* ]
   then
@@ -23,3 +26,5 @@ VERSION_FROM=${BASH_REMATCH[1]} # 0.2.22
 VERSION_TO=${BASH_REMATCH[2]} # 0.2.23
 
 echo "Bumping $1 version from $VERSION_FROM to $VERSION_TO"
+
+cd build_scripts
