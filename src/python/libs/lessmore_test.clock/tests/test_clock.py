@@ -2,10 +2,6 @@ import time
 
 from lessmore_test.clock import *
 
-# some comment 2
-# test
-a = 1
-
 
 @clockify("time")
 def _test_time():
