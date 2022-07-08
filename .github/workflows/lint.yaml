@@ -9,17 +9,9 @@ on:
     tags:
       - 'release-*'
 jobs:
-  lint:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: psf/black@stable
-        with:
-          options: "-l 120"
-          src: "./src"
-  success:
-    needs:
-      - lint
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Done"
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - uses: pre-commit/action@v3.0.0
