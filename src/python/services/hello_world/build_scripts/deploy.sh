@@ -20,5 +20,5 @@ fi
 
 IMAGE_TAG=$REGISTRY/$IMAGE_NAME-$COMMIT_ID
 
-# - Run tests
-IMAGE_TAG=$IMAGE_TAG docker-compose -f docker-compose.yaml up -d
+# deploy
+#IMAGE_TAG=$IMAGE_TAG docker-compose -f docker-compose.yaml up -d
