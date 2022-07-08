@@ -28,16 +28,22 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-from contextlib import closing, contextmanager
+
+from contextlib import closing
+from contextlib import contextmanager
 from functools import cmp_to_key
 from gzip import GzipFile
 from io import UnsupportedOperation
 
+
 try:
     from urllib.error import HTTPError
-    from urllib.request import Request, urlopen
+    from urllib.request import Request
+    from urllib.request import urlopen
 except ImportError:
-    from urllib2 import HTTPError, Request, urlopen
+    from urllib2 import HTTPError
+    from urllib2 import Request
+    from urllib2 import urlopen
 
 try:
     input = raw_input

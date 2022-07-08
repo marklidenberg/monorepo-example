@@ -1,10 +1,11 @@
+import os
 import time
 
 from flask import Flask
-import os
 
 # using package from lessmore_test
 from lessmore_test.clock import clock
+
 
 clock.enable()
 app = Flask(__name__)

@@ -1,7 +1,8 @@
+import fnmatch
 import glob
 import os
 import subprocess
-import fnmatch
+
 from dotenv import load_dotenv  # todo: replace with builtin
 
 
