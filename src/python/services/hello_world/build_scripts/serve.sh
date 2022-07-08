@@ -31,4 +31,4 @@ if [ $REGISTRY != 'localhost' ]
     docker push $IMAGE_TAG
 fi
 
-/bin/bash deploy.sh
+/bin/bash deploy.sh || exit 1

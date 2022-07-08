@@ -24,4 +24,4 @@ IMAGE_TAG=$REGISTRY/$IMAGE_NAME-$COMMIT_ID
 BUILDKIT_PROGRESS=plain DOCKER_DEFAULT_PLATFORM=$PLATFORM IMAGE_TAG=$IMAGE_TAG docker-compose build
 
 # - Run tests
-IMAGE_TAG=$IMAGE_TAG docker-compose -f docker-compose-test.yaml up --abort-on-container-exit
+IMAGE_TAG=$IMAGE_TAG docker-compose -f docker-compose-test.yaml up --abort-on-container-exit || exit 1
