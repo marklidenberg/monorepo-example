@@ -2,6 +2,8 @@ import glob
 import os
 import subprocess
 import fnmatch
+from dotenv import load_dotenv  # todo: replace with builtin
+
 
 # - Utils
 def list_files(path, pattern=None, recursive=True):
@@ -18,7 +20,7 @@ def list_files(path, pattern=None, recursive=True):
 
 
 # - Function
-def run_files_by_pattern(pattern, root=None):
+def run_files_by_pattern(pattern, root=None, add_env=False):
     if not root:
         root = "."
 
@@ -29,6 +31,10 @@ def run_files_by_pattern(pattern, root=None):
     for fn in fns:
         subprocess.call(f"chmod +x {fn}", shell=True)
         os.chdir(os.path.dirname(fn))
+
+        if add_env and os.path.exists(".env"):
+            load_dotenv()
+        print("PLATFORM!!!!!!!!!!", os.environ.get("PLATFORM", "PLATFORM NOT SPECIFIED"))
         subprocess.call("./" + os.path.basename(fn), shell=True)
         os.chdir(current_dir)
 
