@@ -31,7 +31,7 @@ jobs:
   # из матрицы по одному как required.
   success:
     needs:
-      - check
+      - pre-commit
       - build-and-test
 
     runs-on: ubuntu-latest
