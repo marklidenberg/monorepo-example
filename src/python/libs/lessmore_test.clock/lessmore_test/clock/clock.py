@@ -6,7 +6,7 @@ from lessmore_test.code_block import code
 
 
 class Clock:
-    """ Time measurement of any code piece. """
+    """Time measurement of any code piece."""
 
     def __init__(
         self,
@@ -91,7 +91,7 @@ class Clock:
             if key in self.checkpoints:
                 self.add_lap(key, t - self.checkpoints.pop(key))
             elif raise_if_not_started:
-                raise Exception("Key {} is not started".format(key))
+                raise Exception(f"Key {key} is not started")
 
     def start(self, key, raise_if_already_started=True):
         """
@@ -105,7 +105,7 @@ class Clock:
         if key not in self.checkpoints:
             return self.clock(key)
         elif raise_if_already_started:
-            raise Exception("Key {} has already started".format(key))
+            raise Exception(f"Key {key} has already started")
 
     def stats(self):
         keys = list(self.laps.keys())
@@ -150,9 +150,9 @@ class Clock:
                 path_repr = path.split("/")[-1]
                 if is_child(path):
                     # child
-                    depth_print("{}: {}".format(path_repr, value_repr), depth)
+                    depth_print(f"{path_repr}: {value_repr}", depth)
                 else:
-                    depth_print("{}: {}".format(path_repr, value_repr), depth)
+                    depth_print(f"{path_repr}: {value_repr}", depth)
             for child in children:
                 pass
             return value
@@ -187,7 +187,7 @@ class Clock:
             json.dump(self.state, f, indent=1)
 
     def load(self, fn):
-        with open(fn, "r") as f:
+        with open(fn) as f:
             js = json.load(f)
             self.laps = js["laps"]
 

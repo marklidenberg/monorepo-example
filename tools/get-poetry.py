@@ -28,23 +28,16 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-
-from contextlib import closing
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 from functools import cmp_to_key
 from gzip import GzipFile
 from io import UnsupportedOperation
-from io import open
-
 
 try:
     from urllib.error import HTTPError
-    from urllib.request import Request
-    from urllib.request import urlopen
+    from urllib.request import Request, urlopen
 except ImportError:
-    from urllib2 import HTTPError
-    from urllib2 import Request
-    from urllib2 import urlopen
+    from urllib2 import HTTPError, Request, urlopen
 
 try:
     input = raw_input
@@ -148,7 +141,7 @@ def colorize(style, text):
     if not is_decorated():
         return text
 
-    return "{}{}\033[0m".format(STYLES[style], text)
+    return f"{STYLES[style]}{text}\033[0m"
 
 
 @contextmanager
@@ -356,7 +349,7 @@ class Installer:
         try:
             self.install(version, upgrade=current_version is not None, file=self._offline_file)
         except subprocess.CalledProcessError as e:
-            print(colorize("error", "An error has occurred: {}".format(str(e))))
+            print(colorize("error", f"An error has occurred: {str(e)}"))
             print(e.output.decode())
 
             return e.returncode
@@ -382,7 +375,12 @@ class Installer:
 
             current_version_re = re.match('(?ms).*__version__ = "(.+)".*', version_content)
             if not current_version_re:
-                print(colorize("warning", "Unable to get the current Poetry version. Assuming None",))
+                print(
+                    colorize(
+                        "warning",
+                        "Unable to get the current Poetry version. Assuming None",
+                    )
+                )
             else:
                 current_version = current_version_re.group(1)
 
@@ -416,7 +414,7 @@ class Installer:
         releases = sorted(metadata["releases"].keys(), key=cmp_to_key(_compare_versions))
 
         if self._version and self._version not in releases:
-            print(colorize("error", "Version {} does not exist.".format(self._version)))
+            print(colorize("error", f"Version {self._version} does not exist."))
 
             return None, None
 
@@ -465,7 +463,12 @@ class Installer:
 
             current_version_re = re.match('(?ms).*__version__ = "(.+)".*', version_content)
             if not current_version_re:
-                print(colorize("warning", "Unable to get the current Poetry version. Assuming None",))
+                print(
+                    colorize(
+                        "warning",
+                        "Unable to get the current Poetry version. Assuming None",
+                    )
+                )
             else:
                 current_version = current_version_re.group(1)
 
@@ -570,25 +573,25 @@ class Installer:
         if platform == "linux2":
             platform = "linux"
 
-        url = self._base_url + "{}/".format(version)
-        name = "poetry-{}-{}.tar.gz".format(version, platform)
-        checksum = "poetry-{}-{}.sha256sum".format(version, platform)
+        url = self._base_url + f"{version}/"
+        name = f"poetry-{version}-{platform}.tar.gz"
+        checksum = f"poetry-{version}-{platform}.sha256sum"
 
         try:
-            r = urlopen(url + "{}".format(checksum))
+            r = urlopen(url + f"{checksum}")
         except HTTPError as e:
             if e.code == 404:
-                raise RuntimeError("Could not find {} file".format(checksum))
+                raise RuntimeError(f"Could not find {checksum} file")
 
             raise
 
         checksum = r.read().decode()
 
         try:
-            r = urlopen(url + "{}".format(name))
+            r = urlopen(url + f"{name}")
         except HTTPError as e:
             if e.code == 404:
-                raise RuntimeError("Could not find {} file".format(name))
+                raise RuntimeError(f"Could not find {name} file")
 
             raise
 
@@ -614,7 +617,7 @@ class Installer:
 
             # Checking hashes
             if checksum != sha.hexdigest():
-                raise RuntimeError("Hashes for {} do not match: {} != {}".format(name, checksum, sha.hexdigest()))
+                raise RuntimeError(f"Hashes for {name} do not match: {checksum} != {sha.hexdigest()}")
 
             self.extract_lib(tar)
 
@@ -680,7 +683,7 @@ class Installer:
             if WINDOWS:
                 python_executable = "python"
 
-            f.write(u("#!/usr/bin/env {}\n".format(python_executable)))
+            f.write(u(f"#!/usr/bin/env {python_executable}\n"))
             f.write(u(BIN))
 
         if not WINDOWS:
@@ -711,14 +714,14 @@ class Installer:
         # Updating any profile we can on UNIX systems
         export_string = self.get_export_string()
 
-        addition = "\n{}\n".format(export_string)
+        addition = f"\n{export_string}\n"
 
         profiles = self.get_unix_profiles()
         for profile in profiles:
             if not os.path.exists(profile):
                 continue
 
-            with open(profile, "r") as f:
+            with open(profile) as f:
                 content = f.read()
 
             if addition not in content:
@@ -731,7 +734,12 @@ class Installer:
         """
         current_path = os.environ.get("PATH", None)
         if current_path is None:
-            print(colorize("warning", "\nUnable to get the PATH value. It will not be updated" " automatically.",))
+            print(
+                colorize(
+                    "warning",
+                    "\nUnable to get the PATH value. It will not be updated" " automatically.",
+                )
+            )
             self._modify_path = False
 
             return
@@ -739,20 +747,30 @@ class Installer:
         if POETRY_BIN not in current_path:
             fish_user_paths = subprocess.check_output(["fish", "-c", "echo $fish_user_paths"]).decode("utf-8")
             if POETRY_BIN not in fish_user_paths:
-                cmd = "set -U fish_user_paths {} $fish_user_paths".format(POETRY_BIN)
-                set_fish_user_path = ["fish", "-c", "{}".format(cmd)]
+                cmd = f"set -U fish_user_paths {POETRY_BIN} $fish_user_paths"
+                set_fish_user_path = ["fish", "-c", f"{cmd}"]
                 subprocess.check_output(set_fish_user_path)
         else:
-            print(colorize("warning", "\nPATH already contains {} and thus was not modified.".format(POETRY_BIN),))
+            print(
+                colorize(
+                    "warning",
+                    f"\nPATH already contains {POETRY_BIN} and thus was not modified.",
+                )
+            )
 
     def add_to_windows_path(self):
         try:
             old_path = self.get_windows_path_var()
-        except WindowsError:
+        except OSError:
             old_path = None
 
         if old_path is None:
-            print(colorize("warning", "Unable to get the PATH value. It will not be updated" " automatically",))
+            print(
+                colorize(
+                    "warning",
+                    "Unable to get the PATH value. It will not be updated" " automatically",
+                )
+            )
             self._modify_path = False
 
             return
@@ -790,7 +808,13 @@ class Installer:
         result = ctypes.c_long()
         SendMessageTimeoutW = ctypes.windll.user32.SendMessageTimeoutW
         SendMessageTimeoutW(
-            HWND_BROADCAST, WM_SETTINGCHANGE, 0, "Environment", SMTO_ABORTIFHUNG, 5000, ctypes.byref(result),
+            HWND_BROADCAST,
+            WM_SETTINGCHANGE,
+            0,
+            "Environment",
+            SMTO_ABORTIFHUNG,
+            5000,
+            ctypes.byref(result),
         )
 
     def remove_from_path(self):
@@ -805,8 +829,8 @@ class Installer:
     def remove_from_fish_path(self):
         fish_user_paths = subprocess.check_output(["fish", "-c", "echo $fish_user_paths"]).decode("utf-8")
         if POETRY_BIN in fish_user_paths:
-            cmd = "set -U fish_user_paths (string match -v {} $fish_user_paths)".format(POETRY_BIN)
-            set_fish_user_path = ["fish", "-c", "{}".format(cmd)]
+            cmd = f"set -U fish_user_paths (string match -v {POETRY_BIN} $fish_user_paths)"
+            set_fish_user_path = ["fish", "-c", f"{cmd}"]
             subprocess.check_output(set_fish_user_path)
 
     def remove_from_windows_path(self):
@@ -825,14 +849,14 @@ class Installer:
         # Updating any profile we can on UNIX systems
         export_string = self.get_export_string()
 
-        addition = "{}\n".format(export_string)
+        addition = f"{export_string}\n"
 
         profiles = self.get_unix_profiles()
         for profile in profiles:
             if not os.path.exists(profile):
                 continue
 
-            with open(profile, "r") as f:
+            with open(profile) as f:
                 content = f.readlines()
 
             if addition not in content:
@@ -853,7 +877,7 @@ class Installer:
 
     def get_export_string(self):
         path = POETRY_BIN.replace(os.getenv("HOME", ""), "$HOME")
-        export_string = 'export PATH="{}:$PATH"'.format(path)
+        export_string = f'export PATH="{path}:$PATH"'
 
         return export_string
 
@@ -957,20 +981,43 @@ class Installer:
 def main():
     parser = argparse.ArgumentParser(description="Installs the latest (or given) version of poetry")
     parser.add_argument(
-        "-p", "--preview", help="install preview version", dest="preview", action="store_true", default=False,
+        "-p",
+        "--preview",
+        help="install preview version",
+        dest="preview",
+        action="store_true",
+        default=False,
     )
     parser.add_argument("--version", help="install named version", dest="version")
     parser.add_argument(
-        "-f", "--force", help="install on top of existing version", dest="force", action="store_true", default=False,
+        "-f",
+        "--force",
+        help="install on top of existing version",
+        dest="force",
+        action="store_true",
+        default=False,
     )
     parser.add_argument(
-        "--no-modify-path", help="do not modify $PATH", dest="no_modify_path", action="store_true", default=False,
+        "--no-modify-path",
+        help="do not modify $PATH",
+        dest="no_modify_path",
+        action="store_true",
+        default=False,
     )
     parser.add_argument(
-        "-y", "--yes", help="accept all prompts", dest="accept_all", action="store_true", default=False,
+        "-y",
+        "--yes",
+        help="accept all prompts",
+        dest="accept_all",
+        action="store_true",
+        default=False,
     )
     parser.add_argument(
-        "--uninstall", help="uninstall poetry", dest="uninstall", action="store_true", default=False,
+        "--uninstall",
+        help="uninstall poetry",
+        dest="uninstall",
+        action="store_true",
+        default=False,
     )
     parser.add_argument(
         "--file",

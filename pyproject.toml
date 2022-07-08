@@ -5,6 +5,10 @@ description = "Mark Lidenberg's Monorepo"
 authors = [ "marklidenberg <marklidenberg@gmail.com>" ]
 license = "MIT"
 
+[tool.poetry.dependencies]
+python = "^3.9"
+black = "^22.6.0"
+
 [tool.black]
 line-length = 120
 

@@ -1,1 +1,1 @@
-from .code_block import code, CodeBlock
+from .code_block import CodeBlock, code

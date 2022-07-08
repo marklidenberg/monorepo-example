@@ -6,9 +6,5 @@
   "scripts": {
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "**/*.py": [
-      "black -l 120"
-    ]
-  }
+  "lint-staged": {}
 }
