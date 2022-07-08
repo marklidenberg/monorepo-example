@@ -3,6 +3,7 @@ import time
 from lessmore_test.clock import *
 
 # some comment 2
+# test
 
 
 @clockify("time")
@@ -20,7 +21,6 @@ def _test_time_with_exception():
 def test_clock():
     # usage 1
     clock = Clock()
-
     _test_time()
     try:
         _test_time_with_exception()
