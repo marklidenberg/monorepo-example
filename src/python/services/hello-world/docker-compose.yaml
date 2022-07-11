@@ -6,6 +6,6 @@ services:
     build:
       context: ../../../.. # repo root
       dockerfile: ./src/python/services/hello-world/Dockerfile
-    command: poetry run python hello-world/app.py
+    command: poetry run python hello_world/app.py
     ports:
       - 5050:5050

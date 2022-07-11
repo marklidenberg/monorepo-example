@@ -2,7 +2,7 @@ FROM python:3.9
 
 # - configure paths
 ENV ROOT_PATH=../../../..
-ENV SERVICE_PATH=src/pythons/services/hello-world
+ENV SERVICE_PATH=src/python/services/hello-world
 
 # - install poetry
 ENV POETRY_HOME=/poetry
@@ -12,7 +12,7 @@ ENV PATH="/poetry/bin:${PATH}"
 RUN poetry config virtualenvs.create false
 
 # - install basic dependencies. NOTE: requirements.txt fild is created manually. See update_requirements.sh script
-COPY src/python/services/hello-world/requirements.txt .
+COPY $SERVICE_PATH/requirements.txt .
 RUN pip install -r requirements.txt
 
 ## - copy source
