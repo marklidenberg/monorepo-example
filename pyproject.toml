@@ -13,8 +13,8 @@ python-dotenv = "^0.20.0"
 line-length = 120
 
 [tool.isort]
+#  isort **/*.py --profile black --lines-between-types 1 --lines-after-imports 2 --combine-as --line-length 120
 profile = "black"
-force_single_line = true
 combine_as_imports = true
 lines_between_types = 1
 lines_after_imports = 2

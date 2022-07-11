@@ -6,7 +6,7 @@ cd ..
 # - Init configuration
 REGISTRY=${REGISTRY:-localhost}
 IMAGE_NAME=${IMAGE_NAME:-hello-world}
-SUFFIX=${IMAGE_SUFFIX:-local}
+SUFFIX=${SUFFIX:-local}
 PLATFORM=${PLATFORM:-linux/arm64/v8}
 #PLATFORM=${PLATFORM:-linux/amd64}
 

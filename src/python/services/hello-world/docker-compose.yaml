@@ -5,7 +5,7 @@ services:
     image: ${IMAGE_TAG:-localhost/hello-world:latest}
     build:
       context: ../../../.. # repo root
-      dockerfile: ./src/python/services/hello_world/Dockerfile
-    command: poetry run python hello_world/app.py
+      dockerfile: ./src/python/services/hello-world/Dockerfile
+    command: poetry run python hello-world/app.py
     ports:
       - 5050:5050

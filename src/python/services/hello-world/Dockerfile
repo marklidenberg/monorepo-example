@@ -8,12 +8,12 @@ ENV PATH="/poetry/bin:${PATH}"
 RUN poetry config virtualenvs.create false
 
 # - install basic dependencies. NOTE: requirements.txt fild is created manually. See update_requirements.sh script
-COPY src/python/services/hello_world/requirements.txt .
+COPY src/python/services/hello-world/requirements.txt .
 RUN pip install -r requirements.txt
 
 ## - copy source
-COPY ../../../. /lessmore
-WORKDIR /lessmore/src/python/services/hello_world
+COPY ../../../. /app
+WORKDIR /app/src/python/services/hello-world
 
 ## - install all left dependencies (editable installs, ...)
 RUN poetry install
