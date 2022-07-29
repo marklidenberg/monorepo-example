@@ -15,4 +15,4 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 brew install pre-commit
 pre-commit install
 
-# -
+# - Install
