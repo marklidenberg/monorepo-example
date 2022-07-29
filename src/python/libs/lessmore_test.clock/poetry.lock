@@ -9,7 +9,7 @@ develop = true
 
 [package.source]
 type = "directory"
-url = "../lessmore_test.code_block"
+url = "$MONOREPO_PATH/source/python/libs/lessmore_test.code_block"
 
 [[package]]
 name = "numpy"

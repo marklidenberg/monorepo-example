@@ -10,8 +10,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.4.3"
-"lessmore_test.code_block" = {path = "../lessmore_test.code_block", develop = true}
-"lessmore_test.clock" = {path = "../lessmore_test.clock", develop = true}
+"lessmore_test.code_block" = {path = "$MONOREPO_PATH/source/python/libs/lessmore_test.code_block", develop = true}
+"lessmore_test.clock" = {path = "$MONOREPO_PATH/source/python/libs/lessmore_test.clock", develop = true}
 icecream = "^2.1.2"
 loguru = "^0.6.0"
 anyconfig = "^0.13.0"

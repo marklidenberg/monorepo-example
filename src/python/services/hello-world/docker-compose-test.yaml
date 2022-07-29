@@ -4,7 +4,7 @@ services:
   server:
     image: ${IMAGE_TAG:-localhost/hello-world:latest}
     build:
-      context: ../../../.. # repo root
+      context: $MONOREPO_PATH # repo root
       dockerfile: ./src/python/services/hello-world/Dockerfile
     command: poetry run python hello_world/app.py
     ports:
@@ -12,7 +12,7 @@ services:
   hello-world-tests:
     image: ${IMAGE_TAG:-localhost/hello-world:latest}
     build:
-      context: ../../../.. # repo root
+      context: $MONOREPO_PATH # repo root
       dockerfile: ./src/python/services/hello-world/Dockerfile
     command: poetry run pytest tests
     depends_on:

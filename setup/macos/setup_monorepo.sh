@@ -1,6 +1,5 @@
 # - Go to repo root
-cd ${0%/*} # go to file directory
-cd ../.. # todo maybe: cd by pattern for bash?
+cd $MONOREPO_PATH
 
 # - Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

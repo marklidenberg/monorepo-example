@@ -1,7 +1,6 @@
 FROM python:3.9
 
 # - configure paths
-ENV ROOT_PATH=../../../..
 ENV SERVICE_PATH=src/python/services/hello-world
 
 # - install poetry
@@ -16,7 +15,7 @@ COPY $SERVICE_PATH/requirements.txt .
 RUN pip install -r requirements.txt
 
 ## - copy source
-COPY $ROOT_PATH/. /app
+COPY $MONOREPO_PATH/. /app
 WORKDIR /app/$SERVICE_PATH
 
 ## - install all left dependencies (editable installs, ...)

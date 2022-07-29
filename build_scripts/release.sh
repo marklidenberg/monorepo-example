@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd ..
+cd $MONOREPO_PATH
 
 # - получаем версию
 pyproject_contents=$(cat pyproject.toml)
@@ -20,5 +20,3 @@ git commit -a -m "chore(release): $VERSION"
 git tag -a "release-$VERSION" -m "chore(release): $VERSION" HEAD
 git push
 git push origin "release-$VERSION"
-
-cd build_scripts

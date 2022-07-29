@@ -10,7 +10,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.4.3"
-"lessmore_test.code_block" = {path = "../lessmore_test.code_block", develop = true}
+"lessmore_test.code_block" = {path = "$MONOREPO_PATH/source/python/libs/lessmore_test.code_block", develop = true}
 
 [tool.poetry.dev-dependencies]
 

@@ -141,12 +141,12 @@ python-versions = "^3.9"
 develop = true
 
 [package.dependencies]
-"lessmore_test.code_block" = {path = "../lessmore_test.code_block", develop = true}
+"lessmore_test.code_block" = {path = "$MONOREPO_PATH/source/python/libs/lessmore_test.code_block", develop = true}
 pandas = "^1.4.3"
 
 [package.source]
 type = "directory"
-url = "../../libs/lessmore_test.clock"
+url = "$MONOREPO_PATH/source/python/libs/libs/lessmore_test.clock"
 
 [[package]]
 name = "lessmore-test.code-block"
@@ -159,7 +159,7 @@ develop = true
 
 [package.source]
 type = "directory"
-url = "../../libs/lessmore_test.code_block"
+url = "$MONOREPO_PATH/source/python/libs/libs/lessmore_test.code_block"
 
 [[package]]
 name = "markupsafe"
